@@ -85,7 +85,7 @@ int main() {
                 ii++;
             }
             if (ii >= n) {
-                break;
+                continue;
             }
             else if (numbers[i] < 0 && numbers[ii] < 0) {
                 if (numbers[i] < numbers[ii]) {
@@ -108,7 +108,7 @@ int main() {
                 ii++;
             }
             if (ii >= n) {
-                break;
+                continue;
             }
             else if (numbers[i] > 0 && numbers[ii] > 0) {
                 if (numbers[i] > numbers[ii]) {
