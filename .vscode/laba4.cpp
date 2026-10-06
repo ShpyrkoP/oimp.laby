@@ -49,46 +49,52 @@ int main()
     }
     sptr++;
   }
-  char* min = words[0];      //указатель на 1 слово. пусть оно будет самым маленьким по размеру
-  int i = 1;             
-  int minl = 0;           //длина слова без повторяющихся символов
-  int let = 0;          //считает не повторяющиеся символы
-  bool vis[256] = { false };
-  while (min[minl] != '\0')
+  if (words.empty())
   {
-    if (vis[min[minl]] == false)
-    {
-      vis[min[minl]] = true;
-      let++;
-    }
-    minl++;
+    cout << "The string is empty";
   }
-  minl = let;
-  for (i; i < words.size(); i++)
-  {
-    int nowl = 0;      //длина iтого слова в векторе
-    char* now=words[i];      //указатель на iтое слово в векторе
-    bool visnow[256] = { false };
-    int letn = 0;
-    while (now[nowl] != '\0')
+  else {
+    char* min = words[0];      //указатель на 1 слово. пусть оно будет самым маленьким по размеру
+    int i = 1;
+    int minl = 0;           //длина слова без повторяющихся символов
+    int let = 0;          //считает не повторяющиеся символы
+    bool vis[256] = { false };
+    while (min[minl] != '\0')
     {
-      if (visnow[now[nowl]] == false)
+      if (vis[min[minl]] == false)
       {
-        visnow[now[nowl]] = true;
-        letn++;
+        vis[min[minl]] = true;
+        let++;
       }
-      nowl++;
+      minl++;
     }
-    nowl = letn;
-    if (minl > nowl)
+    minl = let;
+    for (i; i < words.size(); i++)
     {
-      minl = nowl;
-      min = words[i];
+      int nowl = 0;      //длина iтого слова в векторе
+      char* now = words[i];      //указатель на iтое слово в векторе
+      bool visnow[256] = { false };
+      int letn = 0;
+      while (now[nowl] != '\0')
+      {
+        if (visnow[now[nowl]] == false)
+        {
+          visnow[now[nowl]] = true;
+          letn++;
+        }
+        nowl++;
+      }
+      nowl = letn;
+      if (minl > nowl)
+      {
+        minl = nowl;
+        min = words[i];
+      }
+      else
+      {
+        continue;
+      }
     }
-    else
-    {
-      continue;
-    }
+    cout << "Minimum: " << min << endl;
   }
-  cout << "Minimum: " << min << endl;
 }
