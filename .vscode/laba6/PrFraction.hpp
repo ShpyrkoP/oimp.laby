@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#ifndef PRFRACTION_HPP
+#define PRFRACTION_HPP
 
 class PrFraction {
 private:
@@ -13,7 +15,7 @@ public:
 
 	PrFraction(const PrFraction& Pr1);
 
-	int NOD();
+	int NOD() const;
 
 	void Sokr();
 
@@ -29,3 +31,7 @@ public:
 
 	PrFraction OpFRACT(PrFraction Pr1, PrFraction Pr2);
 };
+
+	PrFraction FrCin();
+
+	#endif

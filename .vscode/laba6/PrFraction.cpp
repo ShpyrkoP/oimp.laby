@@ -3,16 +3,8 @@
 #include <cstdlib>
 #include "PrFraction.hpp"
 
-class PrFraction {
-private:
-	int numer;
-	int denom;
-public:
-	//запрет конструктора по умолчанию
-	PrFraction() = delete;
-
 	//конструктор для получения значения дроби
-	PrFraction(int up, int down):
+	PrFraction::PrFraction(int up, int down):
 		numer(up), denom(down)
 	{
 		if (down == 0)
@@ -24,7 +16,7 @@ public:
 	}
 
 	//конструктор копирования
-	PrFraction(const PrFraction& Pr1)
+	PrFraction::PrFraction(const PrFraction& Pr1)
 	{
 		numer = Pr1.numer;
 		denom = Pr1.denom;
@@ -32,12 +24,11 @@ public:
 	}
 
 
-
 	//методы
 
 
 	//поиск нода
-	int NOD()
+	int PrFraction::NOD() const
 
 	{
         int a = abs(numer);
@@ -52,7 +43,7 @@ public:
 	}
 
 	//сокращение неправильных дробей
-	void Sokr()
+	void PrFraction::Sokr()
 	{
         int div = NOD();
 		numer = numer / div;
@@ -64,24 +55,26 @@ public:
         }
 	}
 
-	int getNum() const    //для константных методов const пишется после объявления метода
+	int PrFraction::getNum() const    //для константных методов const пишется после объявления метода
 	{
 		return numer;
 	}
 
-	int getDenom() const	
+	int PrFraction::getDenom() const	
 	{
 		return denom;
 	}
 
+
 	//вывод дроби 
-	void Display() const
+	void PrFraction::Display() const
 	{
-		std::cout << "The Fraction is " << numer << '/' << denom;
+		std::cout << numer << '/' << denom;
 	}
 
+
 	//метод сложения 2х дробей
-	PrFraction OpPLUS(PrFraction Pr1, PrFraction Pr2)
+	PrFraction PrFraction::OpPLUS(PrFraction Pr1, PrFraction Pr2)
 	{
 		int resUp, resDown;
 		resUp = Pr1.numer * Pr2.denom + Pr2.numer * Pr1.denom;
@@ -91,7 +84,7 @@ public:
 		return res;
 	}
 	//метод умножения 2х дробей
-	PrFraction OpMULT(PrFraction Pr1, PrFraction Pr2)
+	PrFraction PrFraction::OpMULT(PrFraction Pr1, PrFraction Pr2)
 	{
 		int resUp, resDown;
 		resUp = Pr1.numer * Pr2.numer;
@@ -101,14 +94,24 @@ public:
 		return res;
 	}
 	//метод деления 2х дробей
-	PrFraction OpFRACT(PrFraction Pr1, PrFraction Pr2)
+	PrFraction PrFraction::OpFRACT(PrFraction Pr1, PrFraction Pr2)
 	{
 		int resUp, resDown;
 		resUp = Pr1.numer * Pr2.denom;
 		resDown = Pr1.denom * Pr2.numer;
 		PrFraction res{ resUp,resDown };
-		res.Sokr();
+		res.Sokr();		
 		return res;
-	}
+		}
 
-};
+
+PrFraction FrCin()
+	{
+		int a;
+		int b;
+		char c;
+		std::cout << "Enter the numerator and denominator (num/den): ";
+		std::cin >> a >> c >> b;
+		PrFraction Pr1(a, b);
+		return Pr1;
+	}
